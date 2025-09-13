@@ -3,16 +3,21 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import AnimatedSection, { StaggeredList } from "@/components/AnimatedSection";
 import EnhancedHero from "@/components/EnhancedHero";
-import AiConcierge from "@/components/AiConcierge";
-import SystemWeaver from "@/components/SystemWeaver";
+import PillarFlipCards from "@/components/PillarFlipCards";
+import TestimonialsSection from "@/components/TestimonialsSection";
+
+// New Interactive Components
+import { LivingPinnacle } from "@/components/interactive/LivingPinnacle";
+import { AiConcierge as InteractiveAiConcierge } from "@/components/interactive/AiConcierge";
 
 export default function Home() {
   const [selectedInvestment, setSelectedInvestment] = useState<string>("growth");
 
   return (
-    <main className="pt-20">
+    <main>
       {/* Hero Section with Enhanced Hero Component */}
       <section className="relative min-h-screen bg-[#F1F1F1] overflow-hidden">
         <EnhancedHero />
@@ -81,10 +86,10 @@ export default function Home() {
       {/* System Section with System Weaver */}
       <section id="system" className="py-20 bg-[#F1F1F1]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection animation="fadeInUp" className="text-center mb-16">
+          <AnimatedSection animation="scaleIn" className="text-center mb-16">
             <div>
               <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-[#111111] mb-6">
-                The "Local Growth Engine" Package
+                Our Three-Pillar System
               </h2>
               <p className="font-inter text-xl text-[#111111] max-w-3xl mx-auto leading-relaxed">
                 We are not a "freelance agency"; we sell one product. For a fixed price, 
@@ -92,11 +97,50 @@ export default function Home() {
               </p>
             </div>
           </AnimatedSection>
-          <AnimatedSection animation="scaleIn" delay={0.3}>
-            <SystemWeaver />
+          <AnimatedSection animation="scaleIn" delay={0.2}>
+            <PillarFlipCards />
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Results / Case Studies Section */}
+      <section id="results" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection animation="fadeInUp" className="text-center mb-16">
+            <div>
+              <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-[#111111] mb-6">
+                Results that Build Confidence
+              </h2>
+              <p className="font-inter text-lg text-[#111111] max-w-3xl mx-auto">
+                A snapshot of outcomes our system is designed to achieve for Master Craftsmen.
+              </p>
+            </div>
+          </AnimatedSection>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <AnimatedSection animation="fadeInUp" delay={0.1}>
+              <div className="bg-[#F8FAFC] rounded-xl p-8 card-hover h-full">
+                <div className="text-4xl font-bold text-[#007BFF] mb-2">3×</div>
+                <div className="font-inter text-[#111111]">Increase in qualified inquiries in 60 days</div>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animation="fadeInUp" delay={0.2}>
+              <div className="bg-[#F8FAFC] rounded-xl p-8 card-hover h-full">
+                <div className="text-4xl font-bold text-[#008080] mb-2"><span className="align-middle">↓</span> 45%</div>
+                <div className="font-inter text-[#111111]">Reduction in time spent with unqualified leads</div>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animation="fadeInUp" delay={0.3}>
+              <div className="bg-[#F8FAFC] rounded-xl p-8 card-hover h-full">
+                <div className="text-4xl font-bold text-[#111111] mb-2">+95</div>
+                <div className="font-inter text-[#111111]">Local search visibility score (GBP optimization)</div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
 
       {/* Pricing Section */}
       <section id="pricing" className="py-20 bg-white">
@@ -580,6 +624,9 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
+      
+      {/* AI Concierge Chat Assistant */}
+      <InteractiveAiConcierge />
     </main>
   );
 }

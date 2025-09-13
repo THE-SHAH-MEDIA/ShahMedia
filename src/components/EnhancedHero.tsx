@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Zap, Target } from "lucide-react";
-import AiConcierge from "@/components/AiConcierge";
 import Link from "next/link";
 
 export default function EnhancedHero() {
@@ -93,6 +92,8 @@ export default function EnhancedHero() {
         initial="hidden"
         animate={controls}
       >
+
+
         <motion.div variants={itemVariants} className="mb-8">
           <motion.div 
             className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#007BFF]/10 to-[#008080]/10 rounded-full border border-[#007BFF]/20 mb-6"
@@ -160,15 +161,7 @@ export default function EnhancedHero() {
           </motion.div>
         </motion.div>
 
-        {/* AI Assistant Section */}
-        <motion.div 
-          variants={itemVariants}
-          className="flex justify-center mb-16"
-        >
-          <div className="hover-glow">
-            <AiConcierge />
-          </div>
-        </motion.div>
+
 
         {/* Trust Indicators */}
         <motion.div 

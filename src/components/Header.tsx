@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Users, Target, Star, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import TypographyLogo from "@/components/TypographyLogo";
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -51,22 +53,21 @@ const Header: React.FC = () => {
           >
             <Link href="/" className="flex items-center group">
               <div className="relative">
-                {/* Pinnacle Symbol */}
-                <div className="w-12 h-12 bg-gradient-to-br from-[#008080] to-[#00A0A0] rounded-lg flex items-center justify-center mr-4 shadow-xl shadow-[#008080]/20 group-hover:shadow-[#008080]/30 transition-all duration-500 relative overflow-hidden">
-                  {/* Arrow/Pinnacle Icon */}
-                  <div className="w-6 h-6 border-2 border-white border-b-0 border-r-0 transform rotate-45 translate-y-1"></div>
+                {/* Shah Media Logo */}
+                <div className="w-12 h-12 mr-4 relative overflow-hidden">
+                  <Image
+                    src="/logo-128.webp"
+                    alt="Shah Media Logo" 
+                    width={48}
+                    height={48}
+                    priority
+                    className="w-full h-full object-contain transition-all duration-500 group-hover:scale-110"
+                  />
                   {/* Glass reflection effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/10 to-transparent rounded-lg"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
-              <div className="flex flex-col">
-                <span className="font-black text-xl text-[#111111] tracking-tight" style={{ fontFamily: 'Montserrat, sans-serif', letterSpacing: '-0.02em' }}>
-                  SHAH MEDIA
-                </span>
-                <span className="font-medium text-sm text-[#008080] -mt-1 tracking-wide" style={{ fontFamily: 'Inter, sans-serif' }}>
-                  Local Growth Engine
-                </span>
-              </div>
+              <TypographyLogo size="md" className="transition-all duration-300" />
             </Link>
           </motion.div>
 
