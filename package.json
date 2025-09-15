@@ -10,11 +10,12 @@
     "lint": "eslint",
     "prepare": "husky",
     "storybook-init": "npx storybook@latest init",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "^1.4.0",
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.2.1",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -33,6 +34,7 @@
     "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
     "lucide-react": "^0.544.0",
+    "motion": "^12.23.12",
     "next": "15.5.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",

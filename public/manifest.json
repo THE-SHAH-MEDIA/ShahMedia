@@ -12,35 +12,33 @@
   "categories": ["business", "productivity"],
   "icons": [
     {
-      "src": "/logo-64.webp",
-      "sizes": "64x64",
-      "type": "image/webp",
-      "purpose": "any maskable"
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
     },
     {
-      "src": "/logo-128.webp", 
-      "sizes": "128x128",
-      "type": "image/webp",
-      "purpose": "any maskable"
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/logo.webp",
-      "sizes": "192x192", 
-      "type": "image/webp",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/logo.webp",
+      "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/webp", 
-      "purpose": "any maskable"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ],
   "screenshots": [
     {
-      "src": "/logo.webp",
+      "src": "/logo.png",
       "sizes": "1280x720",
-      "type": "image/webp",
+      "type": "image/png",
       "form_factor": "wide"
     }
   ]

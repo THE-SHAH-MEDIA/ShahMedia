@@ -1,13 +1,5 @@
 "use client";
 
-interface AnalyticsEvent {
-  action: string;
-  category?: string;
-  label?: string;
-  value?: number;
-  [key: string]: any;
-}
-
 class Analytics {
   private isInitialized = false;
 
@@ -18,10 +10,10 @@ class Analytics {
     this.isInitialized = true;
     
     // Add to global window object for error boundary access
-    (window as any).analytics = this;
+    (window as Window & { analytics?: Analytics }).analytics = this;
   }
 
-  track(eventName: string, properties?: Record<string, any>) {
+  track(eventName: string, properties?: Record<string, string | number | boolean | null | undefined>) {
     if (typeof window === 'undefined') return;
 
     try {
@@ -32,22 +24,27 @@ class Analytics {
 
       // Track AI chat interactions
       if (eventName === 'ai_chat_interaction') {
-        this.trackAIChatInteraction(properties?.action || 'unknown');
+        this.trackAIChatInteraction(String(properties?.action) || 'unknown');
       }
 
       // Track navigation
       if (eventName === 'navigation_click') {
-        this.trackNavigation(properties?.destination || 'unknown');
+        this.trackNavigation(String(properties?.destination) || 'unknown');
       }
 
       // Track form submissions
       if (eventName === 'form_submission') {
-        this.trackFormSubmission(properties?.form_type || 'unknown');
+        this.trackFormSubmission(String(properties?.form_type) || 'unknown');
       }
 
       // Track Core Web Vitals
-      if (eventName === 'core_web_vital') {
-        this.trackCoreWebVital(properties);
+      if (eventName === 'core_web_vital' && properties) {
+        this.trackCoreWebVital({
+          name: String(properties.name),
+          value: Number(properties.value),
+          rating: String(properties.rating),
+          id: String(properties.id)
+        });
       }
 
       // Send to actual analytics service here
@@ -90,7 +87,7 @@ class Analytics {
     });
   }
 
-  trackCoreWebVital(metric: any) {
+  trackCoreWebVital(metric: { name: string; value: number; rating: string; id: string }) {
     this.track('core_web_vital', {
       name: metric.name,
       value: metric.value,
@@ -100,11 +97,11 @@ class Analytics {
     });
   }
 
-  trackError(error: Error, errorInfo?: any) {
+  trackError(error: Error, errorInfo?: object) {
     this.track('error', {
       message: error.message,
       stack: error.stack,
-      error_info: errorInfo,
+      error_info: errorInfo ? JSON.stringify(errorInfo) : undefined,
       page: window.location.pathname,
       timestamp: Date.now()
     });
@@ -119,12 +116,12 @@ class Analytics {
     return sessionId;
   }
 
-  identify(userId: string, traits?: Record<string, any>) {
+  identify(userId: string, traits?: Record<string, string | number | boolean | null | undefined>) {
     if (typeof window === 'undefined') return;
 
     this.track('user_identified', {
       user_id: userId,
-      traits,
+      traits: traits ? JSON.stringify(traits) : undefined,
       timestamp: Date.now()
     });
   }
@@ -146,7 +143,18 @@ export function trackWebVitals() {
   try {
     // Use dynamic import with type assertion for compatibility
     import('web-vitals')
-      .then((webVitals: any) => {
+      .then((webVitals: {
+        onCLS?: (callback: (metric: { name: string; value: number; rating: string; id: string }) => void) => void;
+        onFID?: (callback: (metric: { name: string; value: number; rating: string; id: string }) => void) => void;
+        onFCP?: (callback: (metric: { name: string; value: number; rating: string; id: string }) => void) => void;
+        onLCP?: (callback: (metric: { name: string; value: number; rating: string; id: string }) => void) => void;
+        onTTFB?: (callback: (metric: { name: string; value: number; rating: string; id: string }) => void) => void;
+        getCLS?: (callback: (metric: { name: string; value: number; rating: string; id: string }) => void) => void;
+        getFID?: (callback: (metric: { name: string; value: number; rating: string; id: string }) => void) => void;
+        getFCP?: (callback: (metric: { name: string; value: number; rating: string; id: string }) => void) => void;
+        getLCP?: (callback: (metric: { name: string; value: number; rating: string; id: string }) => void) => void;
+        getTTFB?: (callback: (metric: { name: string; value: number; rating: string; id: string }) => void) => void;
+      }) => {
         // Try newer API (v3+)
         if (webVitals.onCLS) {
           webVitals.onCLS?.(analytics.trackCoreWebVital.bind(analytics));
@@ -170,7 +178,7 @@ export function trackWebVitals() {
         // Silently fail if web-vitals is not available
         console.info('Web Vitals: Package not available');
       });
-  } catch (error) {
+  } catch {
     console.info('Web Vitals: Tracking skipped');
   }
 }

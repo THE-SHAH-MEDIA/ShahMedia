@@ -113,7 +113,7 @@ export default function SystemWeaver() {
         <path
           className="connection-line"
           d="M 200 200 Q 300 150 400 200"
-          stroke="#008080"
+          stroke="#007BFF"
           strokeWidth="3"
           fill="none"
           opacity="0.6"
@@ -121,7 +121,7 @@ export default function SystemWeaver() {
         <path
           className="connection-line"
           d="M 400 200 Q 500 150 600 200"
-          stroke="#008080"
+          stroke="#007BFF"
           strokeWidth="3"
           fill="none"
           opacity="0.6"
@@ -132,21 +132,22 @@ export default function SystemWeaver() {
           cx="400"
           cy="200"
           r="8"
-          fill="url(#tealGradient)"
+          fill="url(#blueGradient)"
           className="connection-hub"
         />
         
         {/* Gradient definition */}
         <defs>
-          <linearGradient id="tealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#008080" />
-            <stop offset="100%" stopColor="#00A0A0" />
+          <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#007BFF" />
+            <stop offset="100%" stopColor="#0056b3" />
           </linearGradient>
         </defs>
       </svg>
 
       {/* System Nodes */}
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
         {systemNodes.map((node, index) => (
           <div
             key={node.id}

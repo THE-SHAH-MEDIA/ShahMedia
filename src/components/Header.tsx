@@ -6,20 +6,35 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Users, Target, Star, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import TypographyLogo from "@/components/TypographyLogo";
+import { useLoading } from "@/contexts/LoadingContext";
+import DarkModeToggle from "@/components/DarkModeToggle";
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const { isLoading, hasLoadedOnce } = useLoading();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      // Only show header when at the very top (hero section visible)
+      if (currentScrollY < 50) {
+        setIsVisible(true);
+        setIsScrolled(false);
+      } else {
+        setIsVisible(false);
+        setIsScrolled(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -32,16 +47,21 @@ const Header: React.FC = () => {
     { name: "About", href: "#about", icon: Users },
   ];
 
+  // Hide header during loading animation for premium experience
+  if (isLoading || !hasLoadedOnce) {
+    return null;
+  }
+
   return (
     <motion.header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
         isScrolled 
           ? "bg-[#F1F1F1]/95 backdrop-blur-xl border-b border-[#111111]/10 shadow-lg" 
           : "bg-[#F1F1F1]/90 backdrop-blur-lg border-b border-[#111111]/5"
       }`}
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      animate={{ y: isVisible ? 0 : -100 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center h-20">
@@ -54,9 +74,9 @@ const Header: React.FC = () => {
             <Link href="/" className="flex items-center group">
               <div className="relative">
                 {/* Shah Media Logo */}
-                <div className="w-12 h-12 mr-4 relative overflow-hidden">
+                <div className="w-12 h-12 relative overflow-hidden">
                   <Image
-                    src="/logo-128.webp"
+                    src="/logo-new.png"
                     alt="Shah Media Logo" 
                     width={48}
                     height={48}
@@ -67,7 +87,6 @@ const Header: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
-              <TypographyLogo size="md" className="transition-all duration-300" />
             </Link>
           </motion.div>
 
@@ -106,12 +125,22 @@ const Header: React.FC = () => {
               className="hidden lg:flex items-center space-x-2 bg-[#111111]/5 backdrop-blur-xl rounded-xl px-4 py-2 border border-[#111111]/10"
             >
               <div className="w-2 h-2 bg-[#008080] rounded-full animate-pulse"></div>
-              <span className="text-[#111111]/70 text-sm font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <span className="text-[#111111]/70 text-sm font-medium font-inter">
                 Available
               </span>
-              <span className="text-[#111111] text-sm font-semibold" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <span className="text-[#111111] text-sm font-semibold font-inter">
                 Mon-Sat
               </span>
+            </motion.div>
+
+            {/* Dark Mode Toggle */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.3 }}
+              className="flex items-center justify-center"
+            >
+              <DarkModeToggle />
             </motion.div>
 
             {/* Primary CTA Button */}

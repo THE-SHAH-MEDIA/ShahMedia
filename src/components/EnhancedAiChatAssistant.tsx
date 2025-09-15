@@ -6,8 +6,20 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MessageCircle, Send, User, Bot, X, Sparkles, Mic, MicOff } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useAnalytics } from "@/lib/analytics";
+
+interface SpeechRecognitionInterface {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  onstart: () => void;
+  onresult: (event: { results: { [key: number]: { [key: number]: { transcript: string } } } }) => void;
+  onerror: (event: { error: string }) => void;
+  onend: () => void;
+  start: () => void;
+  stop: () => void;
+}
 
 interface Message {
   id: string;
@@ -165,7 +177,19 @@ export default function EnhancedAiChatAssistant() {
       return;
     }
 
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognition = (window as Window & { 
+      SpeechRecognition?: new () => SpeechRecognitionInterface; 
+      webkitSpeechRecognition?: new () => SpeechRecognitionInterface 
+    }).SpeechRecognition || (window as Window & { 
+      SpeechRecognition?: new () => SpeechRecognitionInterface; 
+      webkitSpeechRecognition?: new () => SpeechRecognitionInterface 
+    }).webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      console.warn('Speech recognition not supported');
+      return;
+    }
+
     const recognition = new SpeechRecognition();
     
     recognition.continuous = false;
@@ -177,13 +201,13 @@ export default function EnhancedAiChatAssistant() {
       trackAIChatInteraction('voice_input_started');
     };
 
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event: { results: { [key: number]: { [key: number]: { transcript: string } } } }) => {
       const transcript = event.results[0][0].transcript;
       setInputValue(transcript);
       trackAIChatInteraction('voice_input_completed');
     };
 
-    recognition.onerror = (event: any) => {
+    recognition.onerror = (event: { error: string }) => {
       console.error('Speech recognition error:', event.error);
       setIsListening(false);
     };

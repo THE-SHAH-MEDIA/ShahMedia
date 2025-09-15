@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,7 +19,7 @@ export default function Footer() {
                 <span className="text-white"> Media</span>
               </h3>
               <p className="font-inter text-[#888888] leading-relaxed">
-                The Local Growth Engine for Shivamogga's Master Craftsmen. 
+                The Local Growth Engine for Shivamogga&apos;s Master Craftsmen. 
                 Transforming traditional businesses with AI-enhanced digital systems.
               </p>
             </div>
@@ -110,7 +111,7 @@ export default function Footer() {
             <h4 className="font-montserrat font-semibold text-lg mb-6 text-white">Contact</h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-[#008080] mt-1 flex-shrink-0" />
+                <MapPin className="h-5 w-5 text-[#007BFF] mt-1 flex-shrink-0" />
                 <span className="font-inter text-[#888888] leading-relaxed">
                   Shivamogga, Karnataka<br />
                   India
@@ -118,7 +119,7 @@ export default function Footer() {
               </div>
               
               <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-[#008080] flex-shrink-0" />
+                <Phone className="h-5 w-5 text-[#007BFF] flex-shrink-0" />
                 <Link 
                   href="tel:+919876543210" 
                   className="font-inter text-[#888888] hover:text-[#007BFF] transition-colors duration-300"
@@ -128,7 +129,7 @@ export default function Footer() {
               </div>
               
               <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-[#008080] flex-shrink-0" />
+                <Mail className="h-5 w-5 text-[#007BFF] flex-shrink-0" />
                 <Link 
                   href="mailto:hello@theshahmedia.com" 
                   className="font-inter text-[#888888] hover:text-[#007BFF] transition-colors duration-300"
@@ -138,13 +139,67 @@ export default function Footer() {
               </div>
               
               <div className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-[#008080] mt-1 flex-shrink-0" />
+                <Clock className="h-5 w-5 text-[#007BFF] mt-1 flex-shrink-0" />
                 <span className="font-inter text-[#888888] leading-relaxed">
                   Mon - Fri: 9:00 AM - 6:00 PM<br />
                   Sat: 10:00 AM - 4:00 PM
                 </span>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Premium Brand Container */}
+        <div className="flex justify-center items-center mb-12">
+          <div className="relative bg-white rounded-3xl p-12 md:p-16 lg:p-20 shadow-2xl shadow-black/20 border border-gray-100 max-w-6xl w-full mx-4">
+            {/* Subtle gradient overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50/30 rounded-3xl"></div>
+            
+            {/* Content container */}
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
+              
+              {/* Brand Logo Section */}
+              <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 relative flex-shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-inner border border-gray-100/50"></div>
+                <div className="relative w-full h-full p-6 flex items-center justify-center">
+                  <Image
+                    src="/logo-new.png"
+                    alt="Shah Media Logo"
+                    width={200}
+                    height={200}
+                    className="w-full h-full object-contain filter drop-shadow-sm"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* Elegant divider - vertical on large screens, horizontal on small */}
+              <div className="lg:w-px lg:h-24 w-24 h-px bg-gradient-to-r lg:bg-gradient-to-b from-transparent via-gray-300 to-transparent flex-shrink-0"></div>
+
+              {/* Typography Logo Section - Using Original Brand Image */}
+              <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 relative flex-shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-inner border border-gray-100/50"></div>
+                <div className="relative w-full h-full p-2 flex items-center justify-center">
+                  <Image
+                    src="/typography-new.png"
+                    alt="Shah Media Typography"
+                    width={400}
+                    height={200}
+                    className="w-full h-full object-fill filter drop-shadow-sm"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative corner accents */}
+            <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-[#007BFF]/20 rounded-tl-lg"></div>
+            <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-[#008080]/20 rounded-tr-lg"></div>
+            <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-[#008080]/20 rounded-bl-lg"></div>
+            <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-[#007BFF]/20 rounded-br-lg"></div>
+            
+            {/* Subtle floating animation */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-[#007BFF]/5 via-transparent to-[#008080]/5 rounded-3xl blur-xl opacity-50 animate-pulse"></div>
           </div>
         </div>
 
@@ -170,7 +225,7 @@ export default function Footer() {
               </Link>
               <div className="flex items-center gap-2 text-[#888888] text-sm">
                 <span className="font-inter">Made in</span>
-                <span className="text-[#008080]">♥</span>
+                <span className="text-[#007BFF]">♥</span>
                 <span className="font-inter">Shivamogga</span>
               </div>
             </div>

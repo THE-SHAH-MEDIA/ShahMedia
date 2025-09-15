@@ -4,6 +4,10 @@ import FloatingDock from "@/components/FloatingDock";
 import EnhancedAiChatAssistant from "@/components/EnhancedAiChatAssistant";
 import Footer from "@/components/Footer";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { ClientLayoutWrapper } from "@/components/ClientLayoutWrapper";
+import { LoadingProvider } from "@/contexts/LoadingContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import Header from "@/components/Header";
 import "./globals.css";
 
 const inter = Inter({
@@ -22,14 +26,14 @@ export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "16x16 32x32 48x48", type: "image/x-icon" },
-      { url: "/logo-64.webp", sizes: "64x64", type: "image/webp" },
-      { url: "/logo-128.webp", sizes: "128x128", type: "image/webp" },
-      { url: "/logo.webp", sizes: "192x192", type: "image/webp" }
+      { url: "/favicon.ico", sizes: "any", type: "image/x-icon" },
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" }
     ],
     apple: [
-      { url: "/logo-128.webp", sizes: "128x128", type: "image/webp" },
-      { url: "/logo.webp", sizes: "180x180", type: "image/webp" }
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
     ],
     shortcut: "/favicon.ico"
   },
@@ -41,7 +45,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo.webp",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "The Shah Media - Local Growth Engine"
@@ -52,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Shah Media — Local Growth Engine",
     description: "The Local Growth Engine for Shivamogga's Master Craftsmen. AI-enhanced digital systems for premium growth.",
-    images: ["/logo.webp"]
+    images: ["/logo.png"]
   },
   robots: {
     index: true,
@@ -75,12 +79,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
-        <link rel="icon" href="/logo-64.webp" type="image/webp" sizes="64x64" />
-        <link rel="icon" href="/logo-128.webp" type="image/webp" sizes="128x128" />
-        <link rel="apple-touch-icon" href="/logo-128.webp" sizes="128x128" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#008080" />
+        <meta name="theme-color" content="#007BFF" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Shah Media" />
@@ -98,10 +98,17 @@ export default function RootLayout({
           Skip to content
         </a>
         <ErrorBoundary>
-          <FloatingDock />
-          <EnhancedAiChatAssistant />
-          <main id="main-content">{children}</main>
-          <Footer />
+          <ThemeProvider>
+            <LoadingProvider>
+              <Header />
+              <ClientLayoutWrapper>
+                <FloatingDock />
+                <EnhancedAiChatAssistant />
+                <main id="main-content">{children}</main>
+                <Footer />
+              </ClientLayoutWrapper>
+            </LoadingProvider>
+          </ThemeProvider>
         </ErrorBoundary>
       </body>
     </html>

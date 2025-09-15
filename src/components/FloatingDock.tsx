@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Home, Target, FileText, Star, Users, Phone } from "lucide-react";
 import Link from "next/link";
+import { useLoading } from "@/contexts/LoadingContext";
 
 const dockItems = [
   { name: "Home", href: "#home", icon: Home },
@@ -17,15 +18,22 @@ const dockItems = [
 export default function FloatingDock() {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { isLoading, hasLoadedOnce } = useLoading();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 100);
+      // Show floating dock when scrolled away from hero section (when header is hidden)
+      setIsVisible(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Hide floating dock during loading animation for premium experience
+  if (isLoading || !hasLoadedOnce) {
+    return null;
+  }
 
   return (
     <AnimatePresence>

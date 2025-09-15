@@ -10,15 +10,15 @@ interface TypographyLogoProps {
 
 export default function TypographyLogo({ size = "md", className = "" }: TypographyLogoProps) {
   const sizeClasses = {
-    sm: "h-8",
-    md: "h-12", 
-    lg: "h-16"
+    sm: "h-6",
+    md: "h-28", 
+    lg: "h-32"
   };
 
   const widthClasses = {
-    sm: 120,
-    md: 180,
-    lg: 240
+    sm: 80,
+    md: 420,
+    lg: 480
   };
 
   return (
@@ -28,10 +28,10 @@ export default function TypographyLogo({ size = "md", className = "" }: Typograp
       transition={{ duration: 0.3 }}
     >
       <Image
-        src="/typography.webp"
+        src="/typography-new.png"
         alt="The Shah Media Typography Logo"
         width={widthClasses[size]}
-        height={size === "sm" ? 32 : size === "md" ? 48 : 64}
+        height={size === "sm" ? 24 : size === "md" ? 112 : 128}
         className="w-auto h-full object-contain"
         priority
       />
