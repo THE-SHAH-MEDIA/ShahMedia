@@ -520,6 +520,11 @@ html {
   animation: bounce 0.6s ease;
 }
 
+/* Staggered bounce delay helpers */
+.bounce-delay-0 { animation-delay: 0s; }
+.bounce-delay-100 { animation-delay: 0.1s; }
+.bounce-delay-200 { animation-delay: 0.2s; }
+
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0) scale(1.2);
@@ -565,11 +570,31 @@ html {
   background: linear-gradient(to bottom, #006666, #0056b3);
 }
 
+/* Cross-browser scrollbar & thumb fallbacks for Firefox */
+/* Note: scrollbar-width and scrollbar-color are progressive enhancement features */
+/* They work in modern Firefox and Chrome 121+, gracefully degrade in older browsers */
+* {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(0, 128, 128, 0.6) transparent;
+}
+
+/* Provide vendor-prefixed backdrop-filter for Safari / WebKit */
+.loading-overlay {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
 /* Grid system utility */
 .grid-12 {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1.5rem;
+}
+
+/* Pattern utilities */
+.pattern-dots-teal {
+  background-image: radial-gradient(circle at 50% 50%, #008080 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
 @media (max-width: 1024px) {
@@ -792,6 +817,7 @@ html {
   right: 0;
   bottom: 0;
   background: rgba(241, 241, 241, 0.9);
+  -webkit-backdrop-filter: blur(8px); /* Safari fallback */
   backdrop-filter: blur(8px);
   z-index: 9999;
   display: flex;
@@ -985,6 +1011,7 @@ html {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   padding: 1.5rem;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }

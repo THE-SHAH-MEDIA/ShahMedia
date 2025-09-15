@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Building, Target, Bot, ArrowRight, X } from "lucide-react"
+import { Building, Target, Bot, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import styles from "./PillarFlipCards.module.css"
 
 interface PillarCard {
   id: string
@@ -13,7 +14,7 @@ interface PillarCard {
   fullDescription: string
   detailedFeatures: string[]
   benefits: string[]
-  icon: React.ComponentType<any>
+  icon: React.ComponentType<React.ComponentProps<'svg'>>
   color: string
   category: string
 }
@@ -123,34 +124,20 @@ export default function PillarFlipCards() {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-        {pillars.map((pillar, index) => (
-          <div
-            key={pillar.id}
-            className="brand-flip-card group cursor-pointer h-80"
-          >
-            <div className="brand-card-inner">
+        {pillars.map((pillar) => (
+          <div key={pillar.id} className={`group cursor-pointer h-80 ${styles.brandFlipCard} ${styles[`color-${pillar.id}`] ?? ''}`}>
+            <div className={styles.brandCardInner}>
               {/* Front of card */}
-              <div 
-                className="brand-card-front"
-                style={{ 
-                  backgroundColor: `${pillar.color}`,
-                }}
-              >
+              <div className={`${styles.brandCardFront} ${styles.pillarColor}`}>
                 {/* Top label matching the brand */}
-                <div 
-                  className="brand-card-top"
-                  style={{ 
-                    backgroundColor: 'transparent',
-                    borderColor: 'white'
-                  }}
-                >
+                <div className={styles.brandCardTop}>
                   <p className="brand-card-top-para font-montserrat font-bold text-white">
                     {pillar.category}
                   </p>
                 </div>
 
                 {/* Main icon */}
-                <div className="brand-icon-container">
+                <div className={styles.iconContainer}>
                   <pillar.icon className="h-12 w-12 text-white" />
                 </div>
 
@@ -171,12 +158,7 @@ export default function PillarFlipCards() {
               </div>
 
               {/* Back of card - now with concise bullet points */}
-              <div 
-                className="brand-card-back"
-                style={{ 
-                  backgroundColor: '#111111',
-                }}
-              >
+              <div className={styles.brandCardBack}>
                 {/* Title with icon */}
                 <div className="flex items-center justify-center mb-3">
                   <pillar.icon className="h-5 w-5 mr-2 text-white" />
@@ -190,10 +172,7 @@ export default function PillarFlipCards() {
                   <ul className="space-y-2">
                     {pillar.concisePoints.map((point, idx) => (
                       <li key={idx} className="flex items-start text-white/90 text-xs">
-                        <div 
-                          className="w-1.5 h-1.5 rounded-full mt-1.5 mr-2 flex-shrink-0" 
-                          style={{ backgroundColor: pillar.color }}
-                        ></div>
+                        <div className={`${styles.colorDot}`}></div>
                         <span className="leading-tight">{point}</span>
                       </li>
                     ))}
@@ -201,12 +180,8 @@ export default function PillarFlipCards() {
                 </div>
 
                 {/* Learn More Button */}
-                <div className="px-4 mt-auto pb-4">
-                  <Button
-                    onClick={() => setSelectedPillar(pillar)}
-                    className="w-full bg-white text-gray-900 hover:bg-gray-100 text-xs py-2 h-8"
-                    size="sm"
-                  >
+                  <div className="px-4 mt-auto pb-4">
+                  <Button onClick={() => setSelectedPillar(pillar)} className="w-full bg-white text-gray-900 hover:bg-gray-100 text-xs py-2 h-8" size="sm">
                     Learn More
                     <ArrowRight className="h-3 w-3 ml-1" />
                   </Button>
@@ -223,11 +198,8 @@ export default function PillarFlipCards() {
           {selectedPillar && (
             <>
               <DialogHeader>
-                <div className="flex items-center space-x-3">
-                  <div 
-                    className="w-10 h-10 rounded-lg flex items-center justify-center"
-                    style={{ backgroundColor: selectedPillar.color }}
-                  >
+                  <div className="flex items-center space-x-3">
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${styles.selectedPillarBox}`}>
                     <selectedPillar.icon className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -252,10 +224,7 @@ export default function PillarFlipCards() {
                   <ul className="space-y-2">
                     {selectedPillar.detailedFeatures.map((feature, idx) => (
                       <li key={idx} className="flex items-start text-gray-700">
-                        <div 
-                          className="w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0" 
-                          style={{ backgroundColor: selectedPillar.color }}
-                        ></div>
+                        <div className={`${styles.smallDot} mt-2 mr-3 flex-shrink-0`}></div>
                         <span className="leading-relaxed">{feature}</span>
                       </li>
                     ))}
@@ -268,10 +237,7 @@ export default function PillarFlipCards() {
                   <ul className="space-y-2">
                     {selectedPillar.benefits.map((benefit, idx) => (
                       <li key={idx} className="flex items-start">
-                        <div 
-                          className="w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0" 
-                          style={{ backgroundColor: selectedPillar.color }}
-                        ></div>
+                        <div className={`${styles.smallDot} mt-2 mr-3 flex-shrink-0`}></div>
                         <span className="text-gray-700 leading-relaxed">{benefit}</span>
                       </li>
                     ))}
@@ -284,8 +250,7 @@ export default function PillarFlipCards() {
                     Ready to implement {selectedPillar.title.toLowerCase()} for your business?
                   </p>
                   <Button 
-                    className="w-full"
-                    style={{ backgroundColor: selectedPillar.color }}
+                    className={`w-full ${styles.pillarCTA}`}
                     onClick={() => {
                       // Scroll to contact section or open contact form
                       setSelectedPillar(null)

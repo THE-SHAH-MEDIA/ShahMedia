@@ -23,6 +23,13 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  // Override for Node.js utility scripts
+  {
+    files: ["*.js", "jest.setup.js", "next.config.js", "next.config.ts", "convert-images.js", "upload-webp.js"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
   ...storybook.configs["flat/recommended"]
 ];
 

@@ -143,11 +143,7 @@ export default function LivingPinnacle() {
       
       {/* Subtle overlay pattern */}
       <div 
-        className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle at 50% 50%, #008080 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
-        }}
+        className="absolute inset-0 opacity-5 pointer-events-none pattern-dots-teal"
       />
     </div>
   );

@@ -5,6 +5,7 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Building, Target, Bot, ArrowRight } from "lucide-react"
+import styles from "./SystemWeaver.module.css"
 
 // Register GSAP plugin
 if (typeof window !== "undefined") {
@@ -16,7 +17,7 @@ interface SystemNode {
   title: string
   description: string
   position: { x: number; y: number }
-  icon: React.ComponentType<any>
+  icon: React.ComponentType<React.ComponentProps<'svg'>>
   color: string
 }
 
@@ -47,10 +48,28 @@ const systemNodes: SystemNode[] = [
   }
 ]
 
+// Helper function to get color class
+const getColorClass = (color: string) => {
+  switch (color) {
+    case "#008080":
+    case "#00A0A0":
+      return styles.colorTeal;
+    case "#007BFF":
+      return styles.colorBlue;
+    case "#28a745":
+      return styles.colorGreen;
+    case "#6f42c1":
+      return styles.colorPurple;
+    case "#fd7e14":
+      return styles.colorOrange;
+    default:
+      return styles.colorTeal;
+  }
+}
+
 export function SystemWeaver() {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
-  const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [selectedNode, setSelectedNode] = useState<string>("digital-atelier")
 
   useEffect(() => {
@@ -108,10 +127,10 @@ export function SystemWeaver() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-[#111111] mb-6">
-            The "Local Growth Engine" Package
+            The &ldquo;Local Growth Engine&rdquo; Package
           </h2>
           <p className="font-inter text-xl text-[#111111] max-w-3xl mx-auto leading-relaxed">
-            We are not a "freelance agency"; we sell one product. For a fixed price, 
+            We are not a &ldquo;freelance agency&rdquo;; we sell one product. For a fixed price, 
             you get a complete system built on three pillars:
           </p>
         </div>
@@ -120,10 +139,7 @@ export function SystemWeaver() {
         <div ref={containerRef} className="relative w-full h-[600px] bg-white rounded-2xl shadow-xl overflow-hidden mb-16">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, #008080 1px, transparent 0)`,
-              backgroundSize: '40px 40px'
-            }}></div>
+            <div className={`absolute inset-0 ${styles.backgroundPattern}`}></div>
           </div>
 
           {/* SVG for connection lines */}
@@ -172,8 +188,8 @@ export function SystemWeaver() {
                       left: `${node.position.x}%`,
                       top: `${node.position.y}%`,
                     }}
-                    onMouseEnter={() => setHoveredNode(node.id)}
-                    onMouseLeave={() => setHoveredNode(null)}
+                    onMouseEnter={() => {}}
+                    onMouseLeave={() => {}}
                     onClick={() => setSelectedNode(node.id)}
                   >
                     <div className={`w-24 h-24 rounded-full flex items-center justify-center shadow-lg border-4 transition-all duration-300 ${
@@ -225,10 +241,9 @@ export function SystemWeaver() {
                   <div>
                     <div className="flex items-center mb-4">
                       <div 
-                        className="w-12 h-12 rounded-full flex items-center justify-center mr-4"
-                        style={{ backgroundColor: `${node.color}20` }}
+                        className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${getColorClass(node.color)} ${styles.nodeIconBg}`}
                       >
-                        <node.icon className="h-6 w-6" style={{ color: node.color }} />
+                        <node.icon className={`h-6 w-6 ${styles.nodeIcon}`} />
                       </div>
                       <h3 className="font-montserrat font-bold text-2xl text-[#111111]">
                         {node.title}
@@ -294,12 +309,10 @@ export function SystemWeaver() {
                   <div className="relative">
                     {/* Placeholder for node illustration */}
                     <div 
-                      className="w-full h-64 rounded-lg flex items-center justify-center"
-                      style={{ backgroundColor: `${node.color}10` }}
+                      className={`w-full h-64 rounded-lg flex items-center justify-center ${getColorClass(node.color)} ${styles.nodeIllustrationBg}`}
                     >
                       <node.icon 
-                        className="h-24 w-24"
-                        style={{ color: node.color }}
+                        className={`h-24 w-24 ${styles.nodeIcon}`}
                       />
                     </div>
                   </div>

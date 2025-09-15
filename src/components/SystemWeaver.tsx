@@ -147,7 +147,7 @@ export default function SystemWeaver() {
 
       {/* System Nodes */}
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-        {systemNodes.map((node, index) => (
+        {systemNodes.map((node) => (
           <div
             key={node.id}
             className={`system-node relative bg-white rounded-lg p-8 shadow-lg border-2 transition-all duration-300 cursor-pointer ${

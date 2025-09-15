@@ -33,6 +33,7 @@ export const metadata: Metadata = {
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" }
     ],
     apple: [
+      // Apple touch icon for iOS home screen - 180x180 is the standard size
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
     ],
     shortcut: "/favicon.ico"
@@ -80,6 +81,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="manifest" href="/manifest.json" />
+        {/* Apple touch icon for iOS home screen - required as link element */}
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        {/* Theme-color meta tags - Progressive enhancement for supported browsers */}
+        {/* Works in Chrome, Safari, Edge; gracefully ignored by Firefox/Opera */}
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111111" />
         <meta name="theme-color" content="#007BFF" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />

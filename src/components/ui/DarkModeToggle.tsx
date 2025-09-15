@@ -289,7 +289,7 @@ const DarkModeToggle: React.FC = () => {
           height: 43px;
           z-index: -1;
           fill: var(--color-canvas-white);
-          opacity: 10%;
+          opacity: 0.1;
         }
 
         #light-ray-2 {
@@ -300,7 +300,7 @@ const DarkModeToggle: React.FC = () => {
           height: 55px;
           z-index: -1;
           fill: var(--color-canvas-white);
-          opacity: 10%;
+          opacity: 0.1;
         }
 
         #light-ray-3 {
@@ -460,6 +460,7 @@ const DarkModeToggle: React.FC = () => {
         .dark-mode-toggle {
           padding: 8px;
           background: rgba(255, 255, 255, 0.1);
+          -webkit-backdrop-filter: blur(10px); /* Safari fallback */
           backdrop-filter: blur(10px);
           border-radius: 12px;
           border: 1px solid rgba(255, 255, 255, 0.2);
