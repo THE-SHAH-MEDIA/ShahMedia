@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import CardsStackSection from "@/components/CardsStackSection";
+import CardsStackSectionNew from "@/components/CardsStackSectionNew";
 import { ThreeDPricingCards } from "@/components/ThreeDPricingCards";
 import { ClientShowcase } from "@/components/ClientShowcase";
 import EnhancedHero from "@/components/EnhancedHero";
@@ -85,7 +85,7 @@ export default function Home() {
       <AppleCardsCarousel />
 
       {/* Cards Stack Section - Growth System Components */}
-      <CardsStackSection />
+      <CardsStackSectionNew />
 
       {/* Client Showcase - Animated Testimonials */}
       <ClientShowcase />

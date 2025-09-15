@@ -3,7 +3,6 @@
 import * as React from "react"
 import { HTMLMotionProps, motion } from "framer-motion"
 import { cn } from "@/lib/utils"
-import styles from "./cards-stack.module.css"
 
 interface CardStickyProps extends HTMLMotionProps<"div"> {
   index: number
@@ -18,7 +17,11 @@ const ContainerScroll = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={cn("relative w-full", styles.containerScroll, className)}
+      className={cn("relative w-full", className)}
+      style={{
+        perspective: "1000px",
+        ...props.style,
+      }}
       {...props}
     >
       {children}
@@ -49,10 +52,11 @@ const CardSticky = React.forwardRef<HTMLDivElement, CardStickyProps>(
         layout="position"
         style={{
           top: y,
-          zIndex: z,
+          z,
+          backfaceVisibility: "hidden",
           ...style,
         }}
-        className={cn("sticky", styles.cardSticky, className)}
+        className={cn("sticky", className)}
         {...props}
       >
         {children}
