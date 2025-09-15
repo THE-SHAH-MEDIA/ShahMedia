@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Building, Target, Bot, ArrowRight } from "lucide-react"
+import { Building, Target, Bot, ArrowRight, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
@@ -13,7 +13,7 @@ interface PillarCard {
   fullDescription: string
   detailedFeatures: string[]
   benefits: string[]
-  icon: React.ComponentType<{ className?: string; size?: number }>
+  icon: React.ComponentType<any>
   color: string
   category: string
 }
@@ -123,7 +123,7 @@ export default function PillarFlipCards() {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-        {pillars.map((pillar) => (
+        {pillars.map((pillar, index) => (
           <div
             key={pillar.id}
             className="brand-flip-card group cursor-pointer h-80"

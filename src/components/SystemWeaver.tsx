@@ -147,7 +147,6 @@ export default function SystemWeaver() {
 
       {/* System Nodes */}
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
-        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
         {systemNodes.map((node, index) => (
           <div
             key={node.id}

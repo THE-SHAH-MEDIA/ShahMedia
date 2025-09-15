@@ -16,7 +16,7 @@ interface SystemNode {
   title: string
   description: string
   position: { x: number; y: number }
-  icon: React.ComponentType<{ className?: string; size?: number; style?: React.CSSProperties }>
+  icon: React.ComponentType<any>
   color: string
 }
 
@@ -50,6 +50,7 @@ const systemNodes: SystemNode[] = [
 export function SystemWeaver() {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
+  const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [selectedNode, setSelectedNode] = useState<string>("digital-atelier")
 
   useEffect(() => {
@@ -107,10 +108,10 @@ export function SystemWeaver() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-[#111111] mb-6">
-            The &ldquo;Local Growth Engine&rdquo; Package
+            The "Local Growth Engine" Package
           </h2>
           <p className="font-inter text-xl text-[#111111] max-w-3xl mx-auto leading-relaxed">
-            We are not a &ldquo;freelance agency&rdquo;; we sell one product. For a fixed price, 
+            We are not a "freelance agency"; we sell one product. For a fixed price, 
             you get a complete system built on three pillars:
           </p>
         </div>
@@ -171,6 +172,8 @@ export function SystemWeaver() {
                       left: `${node.position.x}%`,
                       top: `${node.position.y}%`,
                     }}
+                    onMouseEnter={() => setHoveredNode(node.id)}
+                    onMouseLeave={() => setHoveredNode(null)}
                     onClick={() => setSelectedNode(node.id)}
                   >
                     <div className={`w-24 h-24 rounded-full flex items-center justify-center shadow-lg border-4 transition-all duration-300 ${

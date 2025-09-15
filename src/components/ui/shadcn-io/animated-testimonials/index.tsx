@@ -2,9 +2,8 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState, useCallback } from "react";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import { cn } from "@repo/shadcn-ui/lib/utils";
 
 export type Testimonial = {
   quote: string;
@@ -26,9 +25,9 @@ export const AnimatedTestimonials = ({
 }: AnimatedTestimonialsProps) => {
   const [active, setActive] = useState(0);
 
-  const handleNext = useCallback(() => {
+  const handleNext = () => {
     setActive((prev) => (prev + 1) % testimonials.length);
-  }, [testimonials.length]);
+  };
 
   const handlePrev = () => {
     setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -43,7 +42,7 @@ export const AnimatedTestimonials = ({
       const interval = setInterval(handleNext, 5000);
       return () => clearInterval(interval);
     }
-  }, [autoplay, handleNext]);
+  }, [autoplay]);
 
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
@@ -86,7 +85,7 @@ export const AnimatedTestimonials = ({
                   }}
                   className="absolute inset-0 origin-bottom"
                 >
-                  <Image
+                  <img
                     src={testimonial.src}
                     alt={testimonial.name}
                     width={500}

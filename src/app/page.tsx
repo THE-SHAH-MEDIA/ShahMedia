@@ -6,10 +6,6 @@ import Link from "next/link";
 import CardsStackSection from "@/components/CardsStackSection";
 import { ThreeDPricingCards } from "@/components/ThreeDPricingCards";
 import { ClientShowcase } from "@/components/ClientShowcase";
-import EnhancedHero from "@/components/EnhancedHero";
-import AnimatedSection from "@/components/AnimatedSection";
-import { AppleCardsCarousel } from "@/components/AppleCardsCarousel";
-import { AiConcierge } from "@/components/interactive/AiConcierge";
 
 export default function Home() {
   const [selectedInvestment, setSelectedInvestment] = useState<string>("growth");
@@ -43,7 +39,7 @@ export default function Home() {
                     <li className="flex items-start hover-lift p-4 rounded-lg transition-all duration-300">
                       <div className="w-2 h-2 rounded-full bg-[#007BFF] mt-3 mr-4 flex-shrink-0 pulse-glow"></div>
                       <p className="font-inter text-lg text-[#111111]">
-                        <strong>Wasted Time:</strong> Hours spent on phone calls with unqualified &ldquo;tire-kicker&rdquo; leads instead of billable work.
+                        <strong>Wasted Time:</strong> Hours spent on phone calls with unqualified "tire-kicker" leads instead of billable work.
                       </p>
                     </li>
                   </AnimatedSection>
@@ -167,7 +163,7 @@ export default function Home() {
               
               <AnimatedSection animation="fadeInUp" delay={0.4}>
                 <p className="font-inter text-lg text-[#111111] mb-8">
-                  Choose the investment level that matches your growth ambitions and let&apos;s discuss how we can be your strategic partner
+                  Choose the investment level that matches your growth ambitions and let's discuss how we can be your strategic partner
                 </p>
               </AnimatedSection>
               
@@ -212,7 +208,7 @@ export default function Home() {
               <AnimatedSection animation="fadeInUp" delay={0.6}>
                 <div className="bg-white rounded-lg p-6 mb-8">
                   <p className="font-inter text-[#111111] font-medium">
-                    This growth engine is designed for ambitious Master Craftsmen who know they are the best at what they do and are ready to build a brand that proves it. Let&apos;s have a conversation about your growth goals—no pressure, just strategic partnership.
+                    This growth engine is designed for ambitious Master Craftsmen who know they are the best at what they do and are ready to build a brand that proves it. Let's have a conversation about your growth goals—no pressure, just strategic partnership.
                   </p>
                 </div>
               </AnimatedSection>
@@ -252,13 +248,13 @@ export default function Home() {
                   <AnimatedSection animation="fadeInUp" delay={0.2}>
                     <p>
                       Our local champions deserve the same sophisticated growth systems that power major companies 
-                      in metro cities. That&apos;s exactly what we deliver—enterprise-level customer acquisition technology, 
+                      in metro cities. That's exactly what we deliver—enterprise-level customer acquisition technology, 
                       tailored for our community.
                     </p>
                   </AnimatedSection>
                   <AnimatedSection animation="fadeInUp" delay={0.3}>
                     <p>
-                      We don&apos;t just run ads or build websites. We install a complete growth engine that transforms 
+                      We don't just run ads or build websites. We install a complete growth engine that transforms 
                       unpredictable lead flow into a steady stream of qualified prospects who are ready to invest 
                       in quality work.
                     </p>
@@ -275,7 +271,7 @@ export default function Home() {
                 <ul className="space-y-4 font-inter text-[#111111]">
                   <li className="flex items-start gap-3 hover-lift p-2 rounded transition-all duration-300">
                     <div className="w-2 h-2 bg-[#007BFF] rounded-full mt-2 flex-shrink-0 pulse-glow"></div>
-                    <span><strong>Local Focus:</strong> We understand Shivamogga&apos;s market and speak your clients&apos; language</span>
+                    <span><strong>Local Focus:</strong> We understand Shivamogga's market and speak your clients' language</span>
                   </li>
                   <li className="flex items-start gap-3 hover-lift p-2 rounded transition-all duration-300">
                     <div className="w-2 h-2 bg-[#007BFF] rounded-full mt-2 flex-shrink-0 pulse-glow"></div>
@@ -297,7 +293,7 @@ export default function Home() {
       </section>
 
       {/* AI Concierge Chat Assistant */}
-      <AiConcierge />
+      <InteractiveAiConcierge />
     </main>
   );
 }
