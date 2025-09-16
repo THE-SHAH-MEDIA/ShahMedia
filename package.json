@@ -41,7 +41,6 @@
     "react-hook-form": "^7.62.0",
     "sharp": "^0.34.3",
     "tailwind-merge": "^3.3.1",
-    "theshahmedia-website": "file:",
     "three": "^0.180.0",
     "web-vitals": "^5.1.0",
     "zod": "^4.1.8"
