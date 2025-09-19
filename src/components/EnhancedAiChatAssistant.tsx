@@ -205,7 +205,8 @@ export default function EnhancedAiChatAssistant() {
       return;
     }
     
-    const recognition = new SpeechRecognition() as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const recognition = new (window as any).SpeechRecognition() || new (window as any).webkitSpeechRecognition();
     
     recognition.continuous = false;
     recognition.interimResults = false;

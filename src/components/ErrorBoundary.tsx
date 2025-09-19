@@ -27,12 +27,20 @@ export default class ErrorBoundary extends Component<Props, State> {
     console.error('Error caught by boundary:', error, errorInfo);
     
     // Send error to analytics if available
-    if (typeof window !== 'undefined' && (window as any).analytics) {
-      (window as any).analytics.track('error_boundary_triggered', {
-        error: error.message,
-        stack: error.stack,
-        errorInfo
-      });
+    if (typeof window !== 'undefined') {
+      const windowWithAnalytics = window as unknown as {
+        analytics?: {
+          track: (event: string, data: Record<string, unknown>) => void;
+        };
+      };
+      
+      if (windowWithAnalytics.analytics) {
+        windowWithAnalytics.analytics.track('error_boundary_triggered', {
+          error: error.message,
+          stack: error.stack,
+          errorInfo
+        });
+      }
     }
   }
 
@@ -59,7 +67,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             </h1>
             
             <p className="text-gray-600 mb-6">
-              We're sorry for the inconvenience. Our team has been notified and is working on a fix.
+              We&apos;re sorry for the inconvenience. Our team has been notified and is working on a fix.
             </p>
             
             <button

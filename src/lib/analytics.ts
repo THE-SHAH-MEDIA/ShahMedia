@@ -1,11 +1,10 @@
 "use client";
 
-interface AnalyticsEvent {
-  action: string;
-  category?: string;
-  label?: string;
-  value?: number;
-  [key: string]: any;
+interface WebVitalMetric {
+  name: string;
+  value: number;
+  rating: string;
+  id: string;
 }
 
 class Analytics {
@@ -18,10 +17,13 @@ class Analytics {
     this.isInitialized = true;
     
     // Add to global window object for error boundary access
-    (window as any).analytics = this;
+    const windowWithAnalytics = window as unknown as {
+      analytics?: Analytics;
+    };
+    windowWithAnalytics.analytics = this;
   }
 
-  track(eventName: string, properties?: Record<string, any>) {
+  track(eventName: string, properties?: Record<string, unknown>) {
     if (typeof window === 'undefined') return;
 
     try {
@@ -32,22 +34,22 @@ class Analytics {
 
       // Track AI chat interactions
       if (eventName === 'ai_chat_interaction') {
-        this.trackAIChatInteraction(properties?.action || 'unknown');
+        this.trackAIChatInteraction(String(properties?.action) || 'unknown');
       }
 
       // Track navigation
       if (eventName === 'navigation_click') {
-        this.trackNavigation(properties?.destination || 'unknown');
+        this.trackNavigation(String(properties?.destination) || 'unknown');
       }
 
       // Track form submissions
       if (eventName === 'form_submission') {
-        this.trackFormSubmission(properties?.form_type || 'unknown');
+        this.trackFormSubmission(String(properties?.form_type) || 'unknown');
       }
 
       // Track Core Web Vitals
-      if (eventName === 'core_web_vital') {
-        this.trackCoreWebVital(properties);
+      if (eventName === 'core_web_vital' && properties) {
+        this.trackCoreWebVital(properties as unknown as WebVitalMetric);
       }
 
       // Send to actual analytics service here
@@ -90,7 +92,7 @@ class Analytics {
     });
   }
 
-  trackCoreWebVital(metric: any) {
+  trackCoreWebVital(metric: WebVitalMetric) {
     this.track('core_web_vital', {
       name: metric.name,
       value: metric.value,
@@ -100,7 +102,7 @@ class Analytics {
     });
   }
 
-  trackError(error: Error, errorInfo?: any) {
+  trackError(error: Error, errorInfo?: Record<string, unknown>) {
     this.track('error', {
       message: error.message,
       stack: error.stack,
@@ -119,7 +121,7 @@ class Analytics {
     return sessionId;
   }
 
-  identify(userId: string, traits?: Record<string, any>) {
+  identify(userId: string, traits?: Record<string, unknown>) {
     if (typeof window === 'undefined') return;
 
     this.track('user_identified', {
@@ -146,6 +148,7 @@ export function trackWebVitals() {
   try {
     // Use dynamic import with type assertion for compatibility
     import('web-vitals')
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((webVitals: any) => {
         // Try newer API (v3+)
         if (webVitals.onCLS) {
@@ -170,7 +173,7 @@ export function trackWebVitals() {
         // Silently fail if web-vitals is not available
         console.info('Web Vitals: Package not available');
       });
-  } catch (error) {
+  } catch {
     console.info('Web Vitals: Tracking skipped');
   }
 }
