@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Users, Target, Star, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLoading } from "@/contexts/LoadingContext";
-import DarkModeToggle from "@/components/DarkModeToggle";
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -54,7 +53,7 @@ const Header: React.FC = () => {
 
   return (
     <motion.header 
-      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 rounded-b-2xl ${
         isScrolled 
           ? "bg-[#F1F1F1]/95 backdrop-blur-xl border-b border-[#111111]/10 shadow-lg" 
           : "bg-[#F1F1F1]/90 backdrop-blur-lg border-b border-[#111111]/5"
@@ -63,7 +62,7 @@ const Header: React.FC = () => {
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="px-6 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center h-20">
           {/* Shah Media Logo */}
           <motion.div 
@@ -133,15 +132,6 @@ const Header: React.FC = () => {
               </span>
             </motion.div>
 
-            {/* Dark Mode Toggle */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.3 }}
-              className="flex items-center justify-center"
-            >
-              <DarkModeToggle />
-            </motion.div>
 
             {/* Primary CTA Button */}
             <motion.div

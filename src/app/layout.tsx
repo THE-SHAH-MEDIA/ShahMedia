@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
-import FloatingDock from "@/components/FloatingDock";
 import EnhancedAiChatAssistant from "@/components/EnhancedAiChatAssistant";
 import Footer from "@/components/Footer";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { ClientLayoutWrapper } from "@/components/ClientLayoutWrapper";
 import { LoadingProvider } from "@/contexts/LoadingContext";
-import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/Header";
 import "./globals.css";
 
@@ -86,7 +84,6 @@ export default function RootLayout({
         {/* Theme-color meta tags - Progressive enhancement for supported browsers */}
         {/* Works in Chrome, Safari, Edge; gracefully ignored by Firefox/Opera */}
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111111" />
         <meta name="theme-color" content="#007BFF" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -105,17 +102,14 @@ export default function RootLayout({
           Skip to content
         </a>
         <ErrorBoundary>
-          <ThemeProvider>
-            <LoadingProvider>
-              <Header />
-              <ClientLayoutWrapper>
-                <FloatingDock />
-                <EnhancedAiChatAssistant />
-                <main id="main-content">{children}</main>
-                <Footer />
-              </ClientLayoutWrapper>
-            </LoadingProvider>
-          </ThemeProvider>
+          <LoadingProvider>
+            <Header />
+            <ClientLayoutWrapper>
+              <EnhancedAiChatAssistant />
+              <main id="main-content">{children}</main>
+              <Footer />
+            </ClientLayoutWrapper>
+          </LoadingProvider>
         </ErrorBoundary>
       </body>
     </html>

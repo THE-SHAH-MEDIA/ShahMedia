@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
 
 /* Custom spacing utilities */
 .logo-spacing {
@@ -93,39 +92,6 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
 
-.dark {
-  --background: var(--color-foundation-charcoal);
-  --foreground: var(--color-canvas-white);
-  --card: var(--color-foundation-charcoal);
-  --card-foreground: var(--color-canvas-white);
-  --popover: var(--color-foundation-charcoal);
-  --popover-foreground: var(--color-canvas-white);
-  --primary: var(--color-focus-blue);
-  --primary-foreground: var(--color-canvas-white);
-  --secondary: var(--color-canvas-white);
-  --secondary-foreground: var(--color-foundation-charcoal);
-  --muted: var(--color-foundation-charcoal);
-  --muted-foreground: var(--color-accent-gray);
-  --accent: var(--color-canvas-white);
-  --accent-foreground: var(--color-foundation-charcoal);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: var(--color-accent-gray);
-  --input: var(--color-accent-gray);
-  --ring: var(--color-focus-blue);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
-}
 
 @layer base {
   * {
@@ -552,30 +518,19 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Hide all scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #008080, #007BFF);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #006666, #0056b3);
-}
-
-/* Cross-browser scrollbar & thumb fallbacks for Firefox */
-/* Note: scrollbar-width and scrollbar-color are progressive enhancement features */
-/* They work in modern Firefox and Chrome 121+, gracefully degrade in older browsers */
+/* Hide scrollbar for Firefox */
 * {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: rgba(0, 128, 128, 0.6) transparent;
+  scrollbar-width: none;
+}
+
+/* Ensure content is still scrollable */
+html {
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 /* Provide vendor-prefixed backdrop-filter for Safari / WebKit */
@@ -792,8 +747,6 @@ html {
 /* Smooth Scrolling Enhancements */
 .smooth-scroll {
   scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 128, 128, 0.5) transparent;
 }
 
 /* Performance Optimizations */
@@ -1056,25 +1009,6 @@ html {
   flex: 1;
   overflow-y: auto;
   padding-right: 8px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-}
-
-.brand-features-scroll::-webkit-scrollbar {
-  width: 4px;
-}
-
-.brand-features-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.brand-features-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 2px;
-}
-
-.brand-features-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
 }
 
 .brand-icons {

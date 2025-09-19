@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronLeft, ChevronRight, X, Diamond, Building2, Camera, Bot, BookOpen, PenTool, Rocket, TrendingUp, Handshake, Sparkles, Zap, Target, Settings } from "lucide-react";
+import { X, Diamond, Building2, Camera, Bot, BookOpen, PenTool, Rocket, TrendingUp, Handshake, Sparkles, Zap, Target } from "lucide-react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import Image from "next/image";
 
@@ -161,7 +161,7 @@ function PillarContent({ pillar }: { pillar: number }) {
   return (
     <div className="relative overflow-hidden">
       {/* Premium gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-indigo-900" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#F8F9FA] via-white to-[#E8F4FD]" />
       
       {/* Content */}
       <div className="relative z-10 p-8 md:p-12">
@@ -185,7 +185,7 @@ function PillarContent({ pillar }: { pillar: number }) {
         
         {/* Headline */}
         <div className="mb-8">
-          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-white mb-4 leading-tight">
+          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 mb-4 leading-tight">
             {pillarData.headline}
           </h4>
           
@@ -195,7 +195,7 @@ function PillarContent({ pillar }: { pillar: number }) {
         
         {/* Description */}
         <div className="mb-10">
-          <p className="text-lg md:text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed font-light">
+          <p className="text-lg md:text-xl text-neutral-700 leading-relaxed font-light">
             {pillarData.description}
           </p>
         </div>
@@ -203,58 +203,58 @@ function PillarContent({ pillar }: { pillar: number }) {
         {/* Benefits & Implementation Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="group">
-            <div className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-indigo-100 dark:border-neutral-700 hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-indigo-100 hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl flex items-center justify-center mr-4">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
-                <h5 className="text-xl font-bold text-neutral-800 dark:text-white">Key Benefits</h5>
+                <h5 className="text-xl font-bold text-neutral-800">Key Benefits</h5>
               </div>
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-emerald-500 rounded-full mt-3 mr-4 flex-shrink-0" />
-                  <span className="text-neutral-700 dark:text-neutral-300 font-medium">Strategic market positioning</span>
+                  <span className="text-neutral-700 font-medium">Strategic market positioning</span>
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-emerald-500 rounded-full mt-3 mr-4 flex-shrink-0" />
-                  <span className="text-neutral-700 dark:text-neutral-300 font-medium">Increased conversion rates</span>
+                  <span className="text-neutral-700 font-medium">Increased conversion rates</span>
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-emerald-500 rounded-full mt-3 mr-4 flex-shrink-0" />
-                  <span className="text-neutral-700 dark:text-neutral-300 font-medium">Premium pricing capability</span>
+                  <span className="text-neutral-700 font-medium">Premium pricing capability</span>
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-emerald-500 rounded-full mt-3 mr-4 flex-shrink-0" />
-                  <span className="text-neutral-700 dark:text-neutral-300 font-medium">Streamlined operations</span>
+                  <span className="text-neutral-700 font-medium">Streamlined operations</span>
                 </li>
               </ul>
             </div>
           </div>
           
           <div className="group">
-            <div className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-purple-100 dark:border-neutral-700 hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
+            <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-purple-100 hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center mr-4">
                   <Zap className="w-5 h-5 text-white" />
                 </div>
-                <h5 className="text-xl font-bold text-neutral-800 dark:text-white">Implementation</h5>
+                <h5 className="text-xl font-bold text-neutral-800">Implementation</h5>
               </div>
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-purple-500 rounded-full mt-3 mr-4 flex-shrink-0" />
-                  <span className="text-neutral-700 dark:text-neutral-300 font-medium">Week 1-2: Discovery & Strategy</span>
+                  <span className="text-neutral-700 font-medium">Week 1-2: Discovery & Strategy</span>
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-purple-500 rounded-full mt-3 mr-4 flex-shrink-0" />
-                  <span className="text-neutral-700 dark:text-neutral-300 font-medium">Week 3-4: Development</span>
+                  <span className="text-neutral-700 font-medium">Week 3-4: Development</span>
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-purple-500 rounded-full mt-3 mr-4 flex-shrink-0" />
-                  <span className="text-neutral-700 dark:text-neutral-300 font-medium">Week 5-6: Testing & Launch</span>
+                  <span className="text-neutral-700 font-medium">Week 5-6: Testing & Launch</span>
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-purple-500 rounded-full mt-3 mr-4 flex-shrink-0" />
-                  <span className="text-neutral-700 dark:text-neutral-300 font-medium">Week 7-8: Optimization</span>
+                  <span className="text-neutral-700 font-medium">Week 7-8: Optimization</span>
                 </li>
               </ul>
             </div>
@@ -350,15 +350,15 @@ export function Card({ card, layout = false }: CardProps) {
               transition={{ duration: 0.3, ease: "easeOut" }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="max-w-6xl mx-auto bg-white/95 dark:bg-neutral-900/95 backdrop-blur-2xl h-fit z-[60] my-10 p-2 rounded-3xl font-sans relative shadow-2xl border border-white/20 dark:border-neutral-700/20"
+              className="max-w-6xl mx-auto bg-white/95 backdrop-blur-2xl h-fit z-[60] my-10 p-2 rounded-3xl font-sans relative shadow-2xl border border-white/20"
             >
               {/* Close button with premium styling */}
               <button
-                className="sticky top-6 h-10 w-10 right-6 ml-auto bg-gradient-to-r from-neutral-800 to-neutral-900 dark:from-white dark:to-neutral-100 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 z-50"
+                className="sticky top-6 h-10 w-10 right-6 ml-auto bg-gradient-to-r from-neutral-800 to-neutral-900 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 z-50"
                 onClick={() => setOpen(false)}
                 aria-label="Close modal"
               >
-                <X className="h-5 w-5 text-white dark:text-neutral-900" />
+                <X className="h-5 w-5 text-white" />
               </button>
               
               {/* Header section with premium gradient */}
@@ -371,14 +371,14 @@ export function Card({ card, layout = false }: CardProps) {
                 </motion.p>
                 <motion.p
                   layoutId={layout ? `title-${card.title}` : undefined}
-                  className="text-3xl md:text-6xl font-bold text-neutral-800 dark:text-white mt-2 leading-tight"
+                  className="text-3xl md:text-6xl font-bold text-neutral-800 mt-2 leading-tight"
                 >
                   {card.title}
                 </motion.p>
               </div>
               
               {/* Content with scroll */}
-              <div className="max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-neutral-300 dark:scrollbar-thumb-neutral-600 scrollbar-track-transparent">
+              <div className="max-h-[70vh] overflow-y-auto">
                 {card.content}
               </div>
             </motion.div>
@@ -388,7 +388,7 @@ export function Card({ card, layout = false }: CardProps) {
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={() => setOpen(true)}
-        className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
+        className="rounded-3xl bg-gray-100 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
       >
         <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-black/70 z-30 pointer-events-none" />
         <div className="relative z-40 p-8">
@@ -427,6 +427,9 @@ export function Carousel({
   const carouselRef = React.useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = React.useState(false);
   const [canScrollRight, setCanScrollRight] = React.useState(true);
+  const [touchStart, setTouchStart] = React.useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = React.useState<number | null>(null);
+  const [isDragging, setIsDragging] = React.useState(false);
 
   useEffect(() => {
     if (carouselRef.current) {
@@ -455,12 +458,90 @@ export function Carousel({
     }
   };
 
+  // Touch handlers for swipe functionality
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && canScrollRight) {
+      scrollRight();
+    }
+    if (isRightSwipe && canScrollLeft) {
+      scrollLeft();
+    }
+  };
+
+  // Mouse handlers for desktop drag functionality
+  const handleMouseDown = (e: React.MouseEvent) => {
+    // Only start dragging if clicking on empty space, not on cards
+    if (e.target === e.currentTarget) {
+      e.preventDefault();
+      setIsDragging(true);
+      setTouchEnd(null);
+      setTouchStart(e.clientX);
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    setTouchEnd(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && canScrollRight) {
+      scrollRight();
+    }
+    if (isRightSwipe && canScrollLeft) {
+      scrollLeft();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
   return (
     <div className="relative w-full">
       <div
-        className="flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-20 scroll-smooth [scrollbar-width:none]"
+        className="flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-20 scroll-smooth [scrollbar-width:none] select-none"
         ref={carouselRef}
         onScroll={checkScrollability}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onDragStart={(e) => e.preventDefault()}
+        onDrag={(e) => e.preventDefault()}
+        style={{ 
+          cursor: isDragging ? 'grabbing' : 'grab',
+          scrollBehavior: 'smooth',
+          WebkitOverflowScrolling: 'touch'
+        }}
       >
         <div className="absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l" />
 
@@ -488,23 +569,12 @@ export function Carousel({
           ))}
         </div>
       </div>
-      <div className="flex justify-end gap-2 mr-10">
-        <button
-          className="relative z-40 h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-900 flex items-center justify-center disabled:opacity-50"
-          onClick={scrollLeft}
-          disabled={!canScrollLeft}
-          aria-label="Scroll left"
-        >
-          <ChevronLeft className="h-6 w-6 text-gray-500" />
-        </button>
-        <button
-          className="relative z-40 h-10 w-10 rounded-full bg-gray-100 dark:bg-neutral-900 flex items-center justify-center disabled:opacity-50"
-          onClick={scrollRight}
-          disabled={!canScrollRight}
-          aria-label="Scroll right"
-        >
-          <ChevronRight className="h-6 w-6 text-gray-500" />
-        </button>
+      
+      {/* Swipe indicator */}
+      <div className="flex justify-center gap-2 mt-4">
+        <p className="text-xs text-gray-500 text-center">
+          Swipe or drag to navigate
+        </p>
       </div>
     </div>
   );
@@ -517,7 +587,7 @@ export function AppleCardsCarousel() {
 
   return (
     <div className="w-full h-full py-20">
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
+      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 font-sans">
         Get to know your 9-Pillar System.
       </h2>
       <Carousel items={cards} />

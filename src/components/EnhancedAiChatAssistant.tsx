@@ -205,7 +205,7 @@ export default function EnhancedAiChatAssistant() {
       return;
     }
     
-    const recognition = new SpeechRecognition();
+    const recognition = new SpeechRecognition() as any;
     
     recognition.continuous = false;
     recognition.interimResults = false;

@@ -17,12 +17,12 @@ export default function Home() {
   return (
     <main>
     {/* Hero Section with Enhanced Hero Component */}
-      <section className="relative min-h-screen bg-[#F1F1F1] overflow-hidden pt-20">
+      <section className="relative min-h-screen overflow-hidden pt-20">
         <EnhancedHero />
       </section>
 
       {/* Problem & Promise Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-[#F8F9FA] via-white to-[#E8F4FD]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection animation="fadeInLeft">
@@ -91,7 +91,7 @@ export default function Home() {
       <ClientShowcase />
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-white">
+      <section id="pricing" className="py-20 bg-gradient-to-br from-[#F8F9FA] via-white to-[#E8F4FD]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection animation="fadeInUp" className="text-center mb-16">
             <div>
@@ -115,7 +115,7 @@ export default function Home() {
 
           {/* Why This Investment Works */}
           <AnimatedSection animation="fadeInUp">
-            <div className="bg-[#F1F1F1] rounded-xl p-8 mb-16">
+            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 mb-16 border border-white/20">
               <h3 className="font-montserrat font-bold text-2xl text-[#111111] text-center mb-8">Why This Investment Works</h3>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -160,7 +160,7 @@ export default function Home() {
 
           {/* Unified Investment & Growth Section */}
           <AnimatedSection animation="fadeInUp" delay={0.2}>
-            <div className="bg-gradient-to-r from-[#F1F1F1] to-[#E3F2FD] rounded-xl p-8 text-center">
+            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 text-center border border-white/20">
               <AnimatedSection animation="scaleIn" delay={0.3}>
                 <h3 className="font-montserrat font-bold text-3xl text-[#111111] mb-4">Ready to Build Your Growth Engine & Transform Your Business?</h3>
               </AnimatedSection>
@@ -210,7 +210,7 @@ export default function Home() {
               </AnimatedSection>
               
               <AnimatedSection animation="fadeInUp" delay={0.6}>
-                <div className="bg-white rounded-lg p-6 mb-8">
+                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 mb-8 border border-white/20">
                   <p className="font-inter text-[#111111] font-medium">
                     This growth engine is designed for ambitious Master Craftsmen who know they are the best at what they do and are ready to build a brand that proves it. Let&apos;s have a conversation about your growth goals—no pressure, just strategic partnership.
                   </p>
@@ -234,7 +234,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-[#F1F1F1]">
+      <section id="about" className="py-20 bg-gradient-to-br from-[#F8F9FA] via-white to-[#E8F4FD]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection animation="fadeInLeft">
@@ -268,7 +268,7 @@ export default function Home() {
             </AnimatedSection>
             
             <AnimatedSection animation="fadeInRight" className="card-hover">
-              <div className="bg-white rounded-lg p-8 shadow-lg">
+              <div className="bg-white/80 backdrop-blur-sm rounded-lg p-8 shadow-lg border border-white/20">
                 <h3 className="font-montserrat font-bold text-2xl text-[#111111] mb-6">
                   The Strategic Partner Difference
                 </h3>

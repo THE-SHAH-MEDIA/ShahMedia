@@ -87,11 +87,10 @@ export function ThreeDPricingCards() {
         <CardContainer key={tier.id} className="inter-var py-4 sm:py-8" containerClassName="py-2">
           <CardBody 
             className={`
-              bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] 
-              dark:bg-black dark:border-white/[0.2] border-black/[0.1] 
+              bg-gray-50 relative group/card border-black/[0.1] 
               w-full h-auto rounded-xl p-4 sm:p-6 border
               ${tier.isPopular 
-                ? 'border-[#007BFF] shadow-2xl shadow-[#007BFF]/[0.1] bg-white dark:bg-black' 
+                ? 'border-[#007BFF] shadow-2xl shadow-[#007BFF]/[0.1] bg-white' 
                 : 'border-black/[0.1] hover:shadow-2xl hover:shadow-emerald-500/[0.1]'
               }
               hover:border-[#007BFF] transition-all duration-300
@@ -125,7 +124,7 @@ export function ThreeDPricingCards() {
             <CardItem
               translateZ="50"
               rotateX={tier.isPopular ? 5 : 0}
-              className="text-lg sm:text-xl font-bold text-neutral-600 dark:text-white text-center group-hover/card:text-[#007BFF] transition-colors duration-300"
+              className="text-lg sm:text-xl font-bold text-neutral-600 text-center group-hover/card:text-[#007BFF] transition-colors duration-300"
             >
               {tier.name}
             </CardItem>
@@ -134,7 +133,7 @@ export function ThreeDPricingCards() {
             <CardItem
               as="p"
               translateZ="60"
-              className="text-neutral-500 text-xs sm:text-sm max-w-sm mt-1 sm:mt-2 dark:text-neutral-300 text-center leading-relaxed group-hover/card:text-neutral-700 dark:group-hover/card:text-neutral-200 transition-colors duration-300"
+              className="text-neutral-500 text-xs sm:text-sm max-w-sm mt-1 sm:mt-2 text-center leading-relaxed group-hover/card:text-neutral-700 transition-colors duration-300"
             >
               {tier.description}
             </CardItem>
@@ -149,7 +148,7 @@ export function ThreeDPricingCards() {
               <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#007BFF] mb-2 group-hover/card:scale-105 transition-transform duration-300">
                 {tier.price}
               </div>
-              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 group-hover/card:text-gray-700 dark:group-hover/card:text-gray-300 transition-colors duration-300">
+              <p className="text-xs sm:text-sm text-gray-600 group-hover/card:text-gray-700 transition-colors duration-300">
                 {tier.priceSubtext}
               </p>
             </CardItem>
@@ -170,7 +169,7 @@ export function ThreeDPricingCards() {
                     `}
                   >
                     <Check className="h-3 w-3 sm:h-4 sm:w-4 text-[#007BFF] mt-0.5 flex-shrink-0 group-hover/card:text-emerald-500 transition-colors duration-300" />
-                    <span className="text-gray-700 dark:text-gray-300 leading-relaxed group-hover/card:text-gray-900 dark:group-hover/card:text-white transition-colors duration-300">
+                    <span className="text-gray-700 leading-relaxed group-hover/card:text-gray-900 transition-colors duration-300">
                       {feature.includes("Everything in") ? (
                         <strong>{feature}</strong>
                       ) : (

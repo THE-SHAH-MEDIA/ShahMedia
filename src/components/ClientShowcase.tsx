@@ -43,7 +43,7 @@ export function ClientShowcase() {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-gradient-to-br from-[#F8F9FA] via-white to-[#E8F4FD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection animation="fadeInUp" className="text-center mb-16">
           <div className="max-w-3xl mx-auto">
@@ -51,7 +51,7 @@ export function ClientShowcase() {
               Meet Our Master Craftsmen
             </h2>
             <p className="font-inter text-xl text-[#666666] leading-relaxed">
-              See how Shivamogga's leading designers, architects, and builders transformed their businesses 
+              See how Shivamogga&apos;s leading designers, architects, and builders transformed their businesses 
               with our Local Growth Engine
             </p>
           </div>
